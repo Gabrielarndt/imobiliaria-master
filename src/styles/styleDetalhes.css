@@ -1,0 +1,84 @@
+main {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.containerDesc {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.imovel-details {
+    margin-top: 20px;
+}
+
+.imovel-details h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.imovel-details p {
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.imovel-foto {
+    margin-bottom: 20px;
+}
+
+.imovel-foto img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.descricao-imovel p {
+    color: #666;
+}
+
+.preco {
+    background: #f0f0f0;
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.backColor {
+    background-color: rgb(121, 36, 36);
+}
+
+.loginIcon {
+    margin-left: 100%;
+    font-size: 40px;
+    color: white;
+}
+
+.loginIcon:hover {
+    transform: scale(1.5);
+    /* Aumenta o tamanho do ícone em 20% */
+    color: rgb(184, 38, 38);
+}
+.rodape {
+    padding: 20px;
+    background-color: #000000;
+    color: #fff;
+    text-align: center;
+}
+
+.rodape-info {
+    font-size: 14px;
+    color: #fff;
+}
+
+
+.rodape-credits {
+    font-size: 12px;
+    color: #fff;
+}
+
+.titulo-links{
+    margin-right: 100px;
+}

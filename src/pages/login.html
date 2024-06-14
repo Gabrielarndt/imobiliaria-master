@@ -1,0 +1,65 @@
+<!-- login.html -->
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Modern Login Form | CodingStella </title>
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap'>
+    <link rel="stylesheet" href="../styles/styleCliente.css">
+</head>
+
+<body>
+    <div style="background-color: rgba(0, 0, 0, 0.2);">
+        <a class="nav-link active" aria-current="page" href="/"
+            style="font-size: 30px; margin-left: 30px; color: rgb(121, 36, 36);"><i
+                class='bx bx-chevron-left'></i></a>
+    </div>
+    <div class="wrapper">
+        <div class="login_box">
+            <div class="login-header">
+                <span>Login</span>
+            </div>
+            <form id="loginForm">
+                <div class="input_box">
+                    <input type="email" id="email" name="email" class="input-field" required>
+                    <label for="email" class="label">Email</label>
+                    <i class='bx bxs-envelope icon'></i>
+                </div>
+
+
+                <div class="input_box">
+                    <input type="password" id="password" name="password" class="input-field" required>
+                    <label for="password" class="label">Password</label>
+                    <button type="button" class="btn-toggle-password" id="password-toggle"><i
+                            class="bx bx-hide icon"></i></button>
+                </div>
+
+                <div class="remember-forgot">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Lembrar-me</label>
+                    </div>
+
+                    <div class="forgot">
+                        <a href="#">Esqueceu a senha?</a>
+                    </div>
+                </div>
+
+                <div class="input_box">
+                    <button type="submit" class="input-submit">Login</button>
+                </div>
+            </form>
+            <div class="register">
+                <span>Não tem uma conta? <a href="/cadastro">Cadastro</a></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="../componentes/Logar.js"></script>
+</body>
+
+</html>

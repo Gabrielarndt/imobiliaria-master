@@ -1,0 +1,120 @@
+<!-- cadastro.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Imóveis</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="../styles/styleImovel.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Cadastro de Imóveis</h1>
+        <form id="cadastro-imovel-form" action="http://localhost:3000/api/imoveis" method="POST"
+            enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao" class="form-control" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="tipo">Tipo:</label>
+                <select id="tipo" name="tipo" class="form-control" required>
+                    <option value="aluguel">Aluguel</option>
+                    <option value="venda">Venda</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tipoImovel">Tipo do Imovel:</label>
+                <select id="tipoImovel" name="tipoImovel" class="form-control" required>
+                    <option value="apartamento">Apartamento</option>
+                    <option value="casa">Casa</option>
+                    <option value="terreno">Terreno</option>
+                    <option value="sala-escritorio">Escritorio</option>
+                    <option value="loja">Loja</option>
+                    <option value="galpao">Galpao</option>
+                    <option value="imovel-rural">Imovel-rural</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="quartos">Quartos:</label>
+                <input type="number" id="quartos" name="quartos" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="garagens">Garagens:</label>
+                <input type="number" id="garagens" name="garagens" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="suites">Suítes:</label>
+                <input type="number" id="suites" name="suites" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="preco">Preço:</label>
+                <input type="number" id="preco" name="preco" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cidade">Cidade:</label>
+                <select class="form-select" id="cidade" name="cidade">
+                    <option value="">Todas as cidades</option>
+                    <option value="itajai" id="itajai">Itajaí</option>
+                    <option value="balneario-camboriu" id="balneario-camboriu">Balneário Camboriú</option>
+                    <option value="itapema" id="itapema">Itapema</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="bairro">Bairro:</label>
+                <select class="form-select" id="bairro" name="bairro">
+                    <option value="">Bairro</option>
+                    <!-- Opções de bairro carregadas dinamicamente após escolha da cidade -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="rua">Rua:</label>
+                <input type="text" id="rua" name="rua" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select class="form-select" id="status" name="status">
+                    <option value="analise" id="analise">Análise</option>
+                    <option value="todos" id="todos">Todos</option>
+                    <option value="destaque" id="destaque">Destaque</option>
+                    <option value="novo" id="novo">Novo</option>
+                </select>
+            </div>
+
+            <label for="fotos">Fotos:</label><br>
+            <input type="file" id="fotos" name="fotos" multiple accept="image/*"><br>
+
+            <div id="selected-photos-container"></div>
+
+            <div class="photo-navigation">
+                <button type="button" id="move-up-btn" class="btn btn-secondary">Mover para cima</button>
+                <button type="button" id="move-down-btn" class="btn btn-secondary">Mover para baixo</button>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Cadastrar Imóvel</button>
+        </form>
+    </div>
+    <script src="../componentes/CadastrarImovel.js"></script>
+
+</body>
+
+</html>

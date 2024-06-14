@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Imóvel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../styles/styleDetalhes.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light backColor">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" href="#"></a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav col-md-11">
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Sobre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Contato</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav col-md-1">
+                        <li class="nav-item">
+                            <a href="/usuario"><i class='bx bx-user-circle loginIcon'></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="containerDesc container">
+            <h2 id="imovel-title"></h2>
+            <div class="row">
+                <div class="col-md-6 imovel-foto" id="imovel-foto"></div>
+                <div class="col-md-6 imovel-details" id="imovel-details"></div>
+            </div>
+            <div class="descricao-imovel" id="descricao-imovel"></div>
+        </div>
+    </main>
+    <div class="container" style="padding: 30px;">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <img src="https://imgs.kenlo.io/VWRCUkQ2Tnp3d1BJRDBJVe1s0xgxSbFGOsBT9+RO1zjks-ynciLnlXpdKzsuCVZKPvMZhGt-GI0v+QFtypVh7xY3icsFUfjk5XPZmbm5wv7flmO60av7iI7h8YSmV56AmIsygfCoQlL16vc0GoUtbBomObYlSE3gDtzZbT1bpz6G7AGHVvEUHDJA.png"
+                    alt="Foto do Dono da Empresa" style="border-radius: 80%; max-width: 100%; margin-bottom: 10px;">
+                <p>Luciane Andréia Pozza Frare</p>
+                <p>CRECI: 4139J</p>
+                <hr style="width: 200px; margin: 0 auto; margin-bottom: 15px;">
+                <a href="#" class="btn btn-primary">Facebook</a>
+                <a href="#" class="btn btn-primary">Instagram</a>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col">
+                        <h2>Imóveis</h2>
+                        <p><a href="#">Encomende seu imóvel</a></p>
+                        <p><a href="#">Cadastre seu imóvel</a></p>
+                    </div>
+                    <div class="col">
+                        <h2>Serviços</h2>
+                        <p><a href="#">Financiamento e bancos</a></p>
+                    </div>
+                    <div class="col">
+                        <h2>Contato</h2>
+                        <p><a href="#">Fale conosco</a></p>
+                    </div>
+                </div>
+                <div class="descricao-imovel">
+                    <p>Para informações adicionais entre em contato: (47) 9 9999 9376 - Luciane Andreia Pozza Frare</p>
+                </div>
+                <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
+                    <img src="../assets/imagens/logo.png" alt="" style="width: 200px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="rodape">
+        <div class="container">
+            <div class="rodape-credits">
+                Site desenvolvido por: Gabriel Henrique Arndt.  Contato (47)99960-7400
+            </div>
+        </div>
+    </footer>
+    <script>
+        window.onload = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const imovelId = urlParams.get('id');
+
+            fetch(`/api/imoveis/${imovelId}`)
+                .then(response => response.json())
+                .then(imovel => {
+                    if (!imovel || !imovel.titulo) {
+                        console.error('Dados do imóvel estão incompletos:', imovel);
+                        return;
+                    }
+
+                    const imovelTitle = document.getElementById('imovel-title');
+                    imovelTitle.textContent = imovel.titulo;
+
+                    const imovelFotoDiv = document.getElementById('imovel-foto');
+                    imovelFotoDiv.innerHTML = ''; // Clear any existing content
+                    if (imovel.fotos && imovel.fotos.length > 0) {
+                        const primeiraFoto = imovel.fotos[0];
+                        const imgElement = document.createElement('img');
+                        imgElement.src = primeiraFoto;
+                        imgElement.style.width = '100%'; // Ajustar o tamanho da imagem conforme necessário
+                        imovelFotoDiv.appendChild(imgElement);
+                    }
+
+                    const imovelDetailsDiv = document.getElementById('imovel-details');
+                    imovelDetailsDiv.innerHTML = `
+                        <div class='preco'>
+                            <p>Preço: R$ ${imovel.preco}</p>
+                        </div>
+                        <p>Tipo: ${imovel.tipo}</p>
+                        <p>Cidade: ${imovel.cidade}</p>
+                        <p>Bairro: ${imovel.bairro}</p>
+                        <p>Rua: ${imovel.rua}</p>
+                        <p><img src="../assets/imagens/iQuarto.png" alt="" style="width: 30px; margin-right: 4px;">Quartos: ${imovel.quartos}</p>
+                        <p><img src="../assets/imagens/iSuite.png" alt="" style="width: 30px; margin-right: 4px;">Suites: ${imovel.suites}</p>
+                        <p><img src="../assets/imagens/iVagas.png" alt="" style="width: 30px; margin-right: 4px;">Garagens: ${imovel.garagens}</p>
+                    `;
+
+                    const descricaoImovelDiv = document.getElementById('descricao-imovel');
+                    descricaoImovelDiv.textContent = imovel.descricao;
+                })
+                .catch(error => {
+                    console.error('Erro ao obter detalhes do imóvel:', error);
+                });
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,211 @@
+<!-- results.html -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados da Pesquisa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../styles/styleResults.css">
+    <link rel="stylesheet" href="../styles/styleIndex.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light backColor">
+            <div class="container-fluid ">
+                <a class="navbar-brand text-white" href="#"></a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav col-md-11">
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Sobre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Contato</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav col-md-1">
+                        <li class="nav-item">
+                            <a href="/usuario"><i class='bx bx-user-circle loginIcon'></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="row bg-light" >
+        <aside id="filters" class="col-md-3 p-5 bg-white" style="border-radius: 40px;">
+            <!-- Coloque seus filtros aqui -->
+            <div class="container">
+                <h2>Filtros</h2>
+                <!-- Formulário de busca -->
+                <form id="searchForm" action="/resultado" method="GET">
+                    <!-- Opções de compra/aluguel -->
+                    <div class="mb-3">
+                        <div class="mb-3">
+                            <select id="tipo" class="form-select" name="tipo">
+                                <option value="">Comprar/Alugar</option>
+                                <option value="venda">Comprar</option>
+                                <option value="aluguel">Alugar</option>
+                            </select>
+                        </div>
+                        <!-- Opções de tipo de imóvel -->
+                        <div class="mb-3">
+                            <select id="tipoImovel" class="form-select" name="tipoImovel">
+                                <option value="">Tipo de imóvel</option>
+                                <option value="apartamento">Apartamento</option>
+                                <option value="casa">Casa</option>
+                                <option value="terreno">Terreno</option>
+                                <option value="sala-escritorio">Sala/Escritório</option>
+                                <option value="loja">Loja</option>
+                                <option value="galpao">Galpão</option>
+                                <option value="imovel-rural">Imóvel Rural</option>
+                            </select>
+                        </div>
+                        <!-- Opções de cidade -->
+                        <div class="mb-3">
+                            <select id="cidade" class="form-select" name="cidade">
+                                <option value="">Todas as cidades</option>
+                                <option value="itajai" id="itajai">Itajaí</option>
+                                <option value="balneario-camboriu" id="balneario-camboriu">Balneário Camboriú
+                                </option>
+                                <option value="itapema" id="itapema">Itapema</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Intervalo de preço -->
+                    <div class="mb-3">
+                        <div class="mb-3">
+                            <input id="precoMinimo" type="number" class="form-control" placeholder="Preço mínimo"
+                                name="precoMinimo">
+                        </div>
+                        <div class="mb-3">
+                            <input id="precoMaximo" type="number" class="form-control" placeholder="Preço máximo"
+                                name="precoMaximo">
+                        </div>
+                        <!-- Opções de bairro -->
+                        <div class="mb-3">
+                            <select id="bairro" class="form-select" name="bairro">
+                                <option value="">Bairro</option>
+                                <!-- Opções de bairro carregadas dinamicamente após escolha da cidade -->
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Botões de quantidade de quartos, suítes e vagas de garagem -->
+                    <div class="row">
+                        <div class="mb-3">
+                            <div class="d-flex flex-column">
+                                <label class="mb-1"><img src="../assets/imagens/iQuarto.png" alt=""
+                                        style="width: 30px; margin-right: 4px;">Quartos</label>
+                                <div class="btn-group" role="group" aria-label="Quartos">
+                                    <button type="button" class="opcao" name="quartos" value="1">1</button>
+                                    <button type="button" class="opcao" name="quartos" value="2">2</button>
+                                    <button type="button" class="opcao" name="quartos" value="3">3</button>
+                                    <button type="button" class="opcao" name="quartos" value="4">4</button>
+                                    <button type="button" class="opcao5 opcao" name="quartos" value="5">5+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex flex-column">
+                                <label class="mb-1"><img src="../assets/imagens/iSuite.png" alt=""
+                                        style="width: 30px; margin-right: 4px;">Suítes</label>
+                                <div class="btn-group" role="group" aria-label="Suítes">
+                                    <button type="button" class="opcao" name="suites" value="1">1</button>
+                                    <button type="button" class="opcao" name="suites" value="2">2</button>
+                                    <button type="button" class="opcao" name="suites" value="3">3</button>
+                                    <button type="button" class="opcao" name="suites" value="4">4</button>
+                                    <button type="button" class="opcao5 opcao" name="suites" value="5">5+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex flex-column ">
+                                <label class="mb-1"><img src="../assets/imagens/iCarro.png" alt=""
+                                        style="width: 30px; margin-right: 4px;">Vagas de Garagem</label>
+                                <div class="btn-group" role="group" aria-label="Vagas de Garagem">
+                                    <button type="button" class="opcao" name="garagens" value="1">1</button>
+                                    <button type="button" class="opcao" name="garagens" value="2">2</button>
+                                    <button type="button" class="opcao" name="garagens" value="3">3</button>
+                                    <button type="button" class="opcao" name="garagens" value="4">4</button>
+                                    <button type="button" class="opcao5 opcao" name="garagens" value="5">5+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <button type="submit" class="mt-3 botao">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </aside>
+            <section id="search-results" class="col-md-9 p-5 text-dark"
+                style="max-height: 800px; overflow-y: auto;">
+                <div class="container">
+                    <h2>Resultados da Pesquisa</h2>
+                    <div id="search-results-list" class="row">
+                        <!-- Esta div será preenchida dinamicamente com os imóveis -->
+                    </div>
+                </div>
+            </section>
+    </main>
+
+    <div class="container" style="padding: 30px;">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <img src="https://imgs.kenlo.io/VWRCUkQ2Tnp3d1BJRDBJVe1s0xgxSbFGOsBT9+RO1zjks-ynciLnlXpdKzsuCVZKPvMZhGt-GI0v+QFtypVh7xY3icsFUfjk5XPZmbm5wv7flmO60av7iI7h8YSmV56AmIsygfCoQlL16vc0GoUtbBomObYlSE3gDtzZbT1bpz6G7AGHVvEUHDJA.png"
+                    alt="Foto do Dono da Empresa" style="border-radius: 80%; max-width: 100%; margin-bottom: 10px;">
+                <p>Luciane Andréia Pozza Frare</p>
+                <p>CRECI: 4139J</p>
+                <hr style="width: 200px; margin: 0 auto; margin-bottom: 15px;">
+                <a href="#" class="btn btn-primary">Facebook</a>
+                <a href="#" class="btn btn-primary">Instagram</a>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col">
+                        <h2>Imóveis</h2>
+                        <p><a href="#">Encomende seu imóvel</a></p>
+                        <p><a href="#">Cadastre seu imóvel</a></p>
+                    </div>
+                    <div class="col">
+                        <h2>Serviços</h2>
+                        <p><a href="#">Financiamento e bancos</a></p>
+                    </div>
+                    <div class="col">
+                        <h2>Contato</h2>
+                        <p><a href="#">Fale conosco</a></p>
+                    </div>
+                </div>
+                <div class="descricao-imovel">
+                    <p>Para informações adicionais entre em contato: (47) 9 9999 9376 - Luciane Andreia Pozza Frare</p>
+                </div>
+                <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
+                    <img src="../assets/imagens/logo.png" alt="" style="width: 200px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="rodape">
+        <div class="container">
+            <div class="rodape-credits">
+                Site desenvolvido por: Gabriel Henrique Arndt. Contato (47)99960-7400
+            </div>
+        </div>
+    </footer>
+
+    <!-- Adicione os links para seus arquivos JavaScript aqui -->
+    <script src="../componentes/home.js"></script>
+    <script src="../componentes/results.js" defer></script>
+</body>
+
+</html>
